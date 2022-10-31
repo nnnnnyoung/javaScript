@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{/*전체 선택자 전체 적용됨*/
+        text-decoration: none;
+    }
+    h1 ,h4{ /* 두개 동시에 적용*/
+        color: brown;
+    }
+
+    div >p{
+        color: aqua;
+    }
+
+    h1:active{ /* 클릭시 색 변경*/
+        color: teal;
+    }
+    h1:hover{ /* 커서 올렸을 시 색 변경*/
+        color: yellowgreen;
+    }
+
+    a:hover{
+        color: rgb(65, 30, 24 , 0.5 /*마지막 0.5는 불투명도 지정해준 것*/);
+    }
+    a:visited{
+        color: black;
+    }
+</style>
+<script>
+    function aa(){
+
+    }
+</script>
+<body>
+    <h1>첫번째 만드는 웹문서</h1>
+    <p>
+        <h4>나는 이제 초보자가 아니다.<br>
+        중급으로 올라가는 사람이다.</h4>
+    </p>
+    <div>
+        <p> body 자손</p>
+        <span>
+            <p>body 후손</p>
+        </span>
+    </div>
+    <hr>
+    <a href="http://www.naver.com"> 네이버로 이동</a>
+    <form action="" method="">
+        아이디 <input type="input" id="uid">
+        <input type="button" value="중복체크" onclick="aa()"> <br>
+        이름 <input type="input" id="uid" disabled value="Geust"><br>
+    </form>
+</body>
+</html>

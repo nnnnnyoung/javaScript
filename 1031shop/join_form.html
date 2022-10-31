@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clear{
+            clear: both;
+        }
+        #joinm{
+            text-align: center;
+            margin-left: 350px;            
+            margin-top: 50px;
+            padding: 10px;
+            border: 2px  solid rgb(0, 0, 0);
+        }
+        #joinm tr{
+            width: 100px;
+            height: 50px;
+        }
+
+        #all{
+            margin: 0px auto;
+            width: 1024px;
+            height: 900px;
+        }
+        header{
+            width: 1024px;
+            height: 100px;
+            background-color: white;
+            float: left;
+            
+        }
+        #menu nav{
+            width: 975px;
+            height: 50px;
+            background-color: rgb(98, 107, 116);
+            float: left;
+            padding-left: 50px;
+        }
+        #menu nav li{
+            display: inline;
+        }
+        #menu nav li a{
+            color: white;
+            text-decoration: none;
+            padding-right: 90px;
+        }
+        header nav {
+            float: right;
+            width: 500px;
+            height: 100px;
+            box-sizing: border-box;
+            text-decoration: none;
+            background-color: white;
+            padding-top: 30px;
+           
+        }
+        header nav li{
+            display: inline;
+            margin-right: 12px;
+            text-decoration: none;
+            color: black;
+        }
+        header nav li a{
+            text-decoration: none;
+            color: black;
+        }
+        section{
+            border: 1px  solid rgb(81, 83, 80);;
+            width: 1024px;
+            height: 400px;
+            float: left;
+            background-color: rgb(175, 189, 189);        
+            text-align: center;
+        }
+
+        header nav ul li #login, #join{
+            color: rgb(65, 160, 65);
+        }
+
+        footer{
+            padding-left: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    
+<body>
+    <div id="all">
+        <header>
+            <a href="./index.html">
+                <img src="./LOGO.png">
+            </a>
+            <nav>
+                <ul><h4>
+                    <li><a href="#" id="login">로그인</a></li>
+                    <li><a href="./join_form.html" id="join">회원가입</a></li>
+                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="#">이용안내</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul></h4>
+            </nav>
+        </header>
+
+        <div id="menu">
+            <nav >
+                <ul>
+                    <li><a href="#">상세 페이지</a></li>
+                    <li><a href="#">장바구니</a></li>
+                    <li><a href="#">고객갤러리</a></li>
+                    <li><a href="#">주문배송</a></li>
+                    <li><a href="#">자주 하는 질문</a></li>                    
+                </ul>
+            </nav>
+        </div>
+        <section>
+            <form action="" method="get"></form>
+                <table id="joinm" >
+                    
+                        <tr>
+                            <td>ID </td>
+                            <td> <input type="text"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>비밀번호</td>
+                            <td> <input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호 확인</td>
+                            <td> <input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>주소</td>
+                            <td> <input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            <input type="submit" name="jjoin" value="가입">
+                            </td>
+                        </tr>                
+                </table>            
+            </form>
+        
+        </section>
+        <div class="clear"></div>
+
+        <footer>
+            <table>
+                <tr ><td> 판매자: 홍길동</td></tr>
+                <tr ><td> 상호: 다연아트</td></tr>
+                <tr ><td> 주소: 경기도 수원시</td></tr>
+                <tr ><td> 전화번호: 031-2222-3333</td></tr>
+            </table>
+        </footer>
+
+
+
+    </div>
+
+
+</body>
+</html>
