@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #blockC{
+        margin-top: 90px;
+        margin-left: 300px;
+        background-color: rgb(221, 220, 149);
+        border: 1px solid;
+        background-image: url(./pic/KakaoTalk_20221104_160938085.jpg) ;
+        background-size: contain;
+    }
+</style>
+
+<body>
+    <canvas id="blockC" width="480" height="320"></canvas>
+</body>
+
+<script>
+    var block=document.getElementById('blockC');
+
+    var ctx=block.getContext('2d');
+    var ballRadius=10; // 공이 벽에 닿았는지를 확인하기 위해 변수 선언후 원의 반지름 값을 넣어줌
+
+    var x=block.width/2;
+    var y=block.height-30;
+    var dx=2;
+    var dy=-2;
+
+    var paddleHeight=10; 
+    var paddleWidth=75;
+    var paddleX=(block.width-paddleWidth)/2; //공을 치기 위한 라켓 정의, 중앙에 위치 해 있다.
+    
+    var rightPressed=false; //키보드 조작을 확인하기 위한 변수 선언
+    var leftPressed=false;
+
+    var brickRowCount=3; //벽돌 행 수
+    var brickColumnCount=5; //벽돌 열 수
+    var brickWidth=75; //벽돌 너비
+    var brickHeight =20; //벽돌 높이
+    var brickPadding =10; //벽돌사이 간격
+    var brickOffsetTop =30; //벽돌과 위 벽 간격
+    var brickOffsetLeft =30; //벽돌과 왼쪽 벽 간격
+    // 벽돌정의 :벽돌의 행 수, 열 수, 너비, 높이, 벽돌사이 패딩 정의(서로 닿지 않게), 
+    // 위쪽*왼쪽 오프셋정의(캔버스 가장자리에 바로 그려지지 않게) 
+
+    var bricks=[]; //벽돌을 2차원 배열로 만들어 줌
+    for(var c=0; c<brickColumnCount; c++){
+        bricks[c]=[];
+        for(var r=0; r<brickRowCount; r++){
+            bricks[c][r]={x: 0, y: 0,status: 1};
+        }
+    }
+
+    var score=0;
+    var lives=3;
+    document.addEventListener('keydown',keyDownHandler,false); //키를 눌렀을 때 이벤트 
+    document.addEventListener('keyup',keyUpHandler,false); //키를 누르지 않았을 때 이벤트 
+    document.addEventListener('mousemove',mouseMoveHandler, false); //마우스를 움직였을때 이벤트
+
+    function mouseMoveHandler(e){
+        var relativeX=e.clientX-block.offsetLeft;
+        if(relativeX>0 && relativeX<block.width){ //마우스의 x좌표값이 캔버스의 너비 안에 있을때
+            paddleX=relativeX-paddleWidth/2; //패널의 중앙부는 계속 마우스에 위치함
+        }
+    }
+
+    function keyDownHandler(e){
+        if(e.key ==="Right" || e.key === "ArrowRight"){ //오른쪽 키를 눌렀을 때
+            //Right를 쓰는 브라우저도 있고 ArrowRight를 쓰는 브라우저도 있기 떄문에 둘 다 적어줌
+            rightPressed=true; //오른쪽 조작 확인 변수를 true로 바꿈
+        }
+        if(e.key ==="Left" || e.key === "ArrowLeft"){ //왼쪽 키를 눌렀을 때            
+            //Left를 쓰는 브라우저도 있고 ArrowLeft를 쓰는 브라우저도 있기 떄문에 둘 다 적어줌
+            leftPressed=true; //왼쪽 조작 확인 변수를 true로 바꿈
+        }
+    }
+
+    function keyUpHandler(e){
+        if(e.key ==="Right" || e.key === "ArrowRight"){ //오른쪽 키를 누르지 않았을 때  
+            //Right를 쓰는 브라우저도 있고 ArrowRight를 쓰는 브라우저도 있기 떄문에 둘 다 적어줌
+            rightPressed=false; //오른쪽 조작 확인 변수를 false로 바꿈
+        }
+        if(e.key ==="Left" || e.key === "ArrowLeft"){ //왼쪽 키를 누르지 않았을 때          
+            //Left를 쓰는 브라우저도 있고 ArrowLeft를 쓰는 브라우저도 있기 떄문에 둘 다 적어줌
+            leftPressed=false; //왼쪽 조작 확인 변수를 false로 바꿈
+        }
+    }
+    function drawball(){ //공 만들기
+        ctx.beginPath();
+        ctx.arc(x,y,ballRadius,0,Math.PI*2);// 원의 x좌표,y좌표 ,반지름,시작각도,종료각도 (360도)
+        ctx.fillStyle="black";
+        ctx.fill();
+        ctx.closePath;
+    }
+    function drawPaddle(){ //패널 만들기
+        ctx.beginPath();
+        ctx.rect(paddleX, block.height-paddleHeight,paddleWidth,paddleHeight);
+        ctx.fillStyle="red";
+        ctx.fill();
+        ctx.closePath();
+    }
+    function drawScore(){ // 점수 그리기
+        ctx.font="16px Arial";
+        ctx.fillStyle="green";
+        ctx.fillText('Score:'+score,8,20);
+    }
+    function drawLives(){ //생명 그리기
+        ctx.font="20px Arial";
+        ctx.fillStyle='pink';
+        if(lives==3){
+            ctx.fillText('♥ ♥ ♥',block.width-65,20);
+        }else if(lives==2){
+            ctx.fillText('♥ ♥' ,block.width-65,20);
+        }else if(lives==1){
+            ctx.fillText('♥',block.width-65,20);
+        }
+        
+    }
+    
+
+
+    function drawBricks(){ //벽돌 그리기
+        for(var c=0; c<brickColumnCount; c++){
+            for(var r=0; r< brickRowCount; r++){
+                if(bricks[c][r].status===1){ 
+                    var brickX=(c*(brickWidth+brickPadding))+brickOffsetLeft;
+                    var brickY=(r*(brickHeight+brickPadding))+brickOffsetTop;
+                    bricks[c][r].x=brickX;
+                    bricks[c][r].y=brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX,brickY,brickWidth,brickHeight);
+                    ctx.fillStyle="#0095DD";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+    function collisionDetection(){ // 벽돌과 충돌할 때 함수
+
+        for(var c=0; c<brickColumnCount; c++ ){
+            for(var r=0; r<brickRowCount; r++){
+                var b=bricks[c][r];
+                if(b.status===1){
+                    if(x> b.x && x<b.x+brickWidth && y>b.y && y<b.y+brickHeight){
+                    // 공의 x 위치가 벽돌의 x위치보다 클 때, 공의 x위치가 벽돌x위치에 벽돌의 너비를 더한 값보다 작을떄,
+                    // 공의 y위치가 벽돌의 y위치보다 클 때, 공의 y위치가 벽골 y위치에 벽돌의 높이를 더한 값보다 작을 때.
+                    // 위 조건을 모두 만족해야 공이 벽돌과 충돌 했을 때
+                        dy=-dy; //공이 튕겨나가기
+                        b.status=0; //블럭 삭제
+                        score++; //점수 +1점
+                        if(score===brickColumnCount*brickRowCount){ //점수가 총 블럭 갯수와 같을 때(벽돌을 전부 깼을 떄)
+                            alert("CLEAR!");
+                            document.location.reload(); //현재 클래스를 다시 시작(게임 다시 시작)
+                            clearInterval(interval);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    function draw(){
+        ctx.clearRect(0,0,block.width,block.height); // 함수가 실행될때마다 캔버스를 지워주어 지난 움직임이 남지 않게 해줌
+        drawBricks();
+        drawball();        
+        drawPaddle();
+        collisionDetection();
+        drawScore();
+        drawLives();
+        if(x+dx<ballRadius  ||x+dx>block.width-ballRadius ){ 
+            //x좌표가 0보다 작거나 캔버스의 넓이보다 크다면 캔버스를 벗어난것 +dx가 아닌 -dx를 해준다.
+            //공이 공의 반지름 길이만큼 캔버스 밖으로 빠져나가는것을 막기 위해 반지름 값도 계산해서 식을 써줌
+            dx=-dx;
+        }
+        if(y+dy<ballRadius){ 
+            //y좌표가 0보다 작거나 캔버스의 높이보다 크다면 캔버스를 벗어난것 +dy가 아닌 -dy를 해준다.
+            //공이 공의 반지름 길이만큼 캔버스 밖으로 빠져나가는것을 막기위해 반지름 값도 계산해서 식을 써줌
+            dy=-dy;
+        } else if( y+dy>block.height-ballRadius ){            
+            if(x>paddleX && x<paddleX+paddleWidth){ //공과 패들이 닿았을 때 튕겨나감
+                dy=-dy; 
+            }else{ // 공이 캔버스 아래쪽으로 나갔을때에는 튕기는 것이 아니라 생명깎임
+                lives--;
+                if(!lives){ //생명이 0이 되었을 떄
+                    alert('GAME OVER');
+                    document.location.reload();
+                    clearInterval(interval);
+                }else{ //생명이 남았을 때 그대로 다시 게임 진행
+                    x=block.width/2;
+                    y=block.height-30;
+                    dx=2;
+                    dy=-2;
+                    paddleX=(block.width-paddleWidth)/2;
+                }
+
+            }
+        }
+        
+        if(rightPressed){
+            paddleX=Math.min(paddleX+7,block.width-paddleWidth); 
+            //오른쪽 버튼을 눌렀을 때 7픽셀 이동
+            //캔버스 밖으로 나가지 않게 최솟값을 지정해줌
+        }else if(leftPressed){
+            paddleX=Math.max(paddleX-7,0);
+            //왼쪽 버튼을 눌렀을 때 7픽셀 이동
+            //캔버스 밖으로 나가지 않게 최댓값을 지정해줌
+        }
+        x += dx; //x,y의 값이 함수가 실행될때마다 바뀜
+        y += dy;
+    }
+    var  interval =  setInterval(draw, 10);//10밀리초마다 draw함수가 실행 됨
+
+
+</script>
+</html>
