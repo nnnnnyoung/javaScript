@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #mypaint{
+       /* background-color: rgb(49, 5, 15); */
+        border: 1px solid;
+    }
+</style>
+<body>
+    <div>
+        <canvas id="mypaint" width="300" height="400"></canvas>
+    </div>
+
+    <div> <!-- 색상 선택 등 컨트롤 박스-->
+        검정 <input type="radio" name="color" onclick="color(this.value)" value="black"checked>
+        빨강 <input type="radio" name="color" onclick="color(this.value)" value="red">
+        초록 <input type="radio" name="color" onclick="color(this.value)" value="green">
+        <br>
+        펜 굵기 <input type="range" name="bold" min="1" max="30" onchange="range(this.value)" value="1">
+        <br>
+        펜 모양 
+        
+        둥근 모서리 <input type="radio" name="shape"  onclick="shape(this.value)" value="pentype1" checked>
+        각진 모서리 <input type="radio" name="shape" onclick="shape(this.value)" value="pentype2" >
+                <!-- 기존에는 태그의 이벤트 발생이 아닌 자바스크립트에서 html문서의 객체를 가져옴
+            지금은 html에서 이벤트 발생이 되면 이를 처리하도록 하는 컨셉
+            1. html에서 이벤트를 발생시키고 자바스크립트를 호출하는 방법
+            2. 자바스크립트(제이쿼리)에서 이벤트를 감지하는 법.     -->
+    </div>
+</body>
+<script>
+    
+    const drawPan=document.getElementById('mypaint'); //mypaint 아이디를 가지고 와서 저장시켜줌
+    // console.log(typeof(drawPan)); 디버깅 f12
+    var myctx=drawPan.getContext("2d"); //펜을 2d로 구현
+    var flag=false; // 마우스 클릭시에만 이벤트를 발생 시키기 위해 flag 만들어 줌
+    var penType="pentype1";
+
+  
+    // 마우스 동작 등록
+    
+    // 마우스 클릭 시점
+    drawPan.addEventListener('mousedown',()=>{ 
+        starDraw()
+      
+    }); // e매개변수=>{코드작성} : 익명의 함수로 정의한다.
+    // 이벤트 리스너의 메서드에서 매개변수로 mousedown 동작 지정하고 그 다음에 동작을 정의함
+
+    // 마우스 버튼 뗄 시점
+    drawPan.addEventListener('mouseup', ()=>{
+        endDraw();
+    })
+
+    
+    // 마우스 무브 움직임
+    drawPan.addEventListener('mousemove',()=>{
+        moveDraw()
+    })
+    //html에서 색상에 이벤트를 처리하는 함수
+    // function color(c){
+    //     myctx.strokeStyle=c;
+    //     myctx.beginPath();
+    // }
+    // 위 아래 모두 기능이 같은 함수. 표기법만 다름
+    color=c=>{
+        myctx.strokeStyle=c;
+        myctx.beginPath();
+    }
+    
+    range=size=>{
+        myctx.lineWidth=size;
+        myctx.beginPath();
+    }
+
+    shape= s=>{
+        penType=s;
+    }
+
+
+    function starDraw(){  //시작점을 시작으로 ----이동점의 선을 긋는 것
+        flag=true;
+        let e=window.event;
+        console.log('마우스 클릭 시작'); 
+        myctx.moveTo((e.clientX-8),(e.clientY-8));
+        //console.log((e.clientX-8)+"/"+(e.clientY-8)); // 디버깅으로 확인시 캔버스의 시작 시점이 8,8이기때문에 -8로 보정해줌
+    }
+    
+    function endDraw(){
+        console.log('마우스 off');
+        flag=false;
+    }
+    function moveDraw(){
+        if(flag){
+            let e=window.event;
+            myctx.lineTo((e.clientX-8),(e.clientY-8));
+            if(penType=="pentype1"){
+                myctx.lineJoin="round"; //선이 꺾일 때 모양 지정
+                myctx.lineCap="round"; // 선이 끝날 때 모양 지정
+            }else{
+                myctx.lineJoin="miter"; //선이 꺾일 때 모양 지정
+                myctx.lineCap="butt"; // 선이 끝날 때 모양 지정
+            }
+            myctx.stroke();
+
+            // console.log('마우스 move');
+            // console.log((e.clientX-8)+"/"+(e.clientY-8));
+    
+        }
+    }
+
+
+
+    // 함수 정의: 정의와 호출, 호출(매개변수 전달) > 함수처리 > 리턴값
+    //           정의: 익명의 함수 (이름이 없다.) - 간단하게 구현하고자 할 떄 , 호출할 필요 없을 떄
+
+</script>
+</html>

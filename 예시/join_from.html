@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./all.css">
+    <link rel="stylesheet" href="./table_input.css">
+</head>
+<body>
+    <div id="main">
+        <header>
+            <div id="im">
+                <a href="./index.html"><img src="./img/dayun.png"></a>
+            </div>
+            <div id="my">
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="./join_from.html">회원가입</a></li>
+                    <li><b href="#">마이 페이지</b></li>
+                    <li><b href="#">이용안내</b></li>
+                    <li><b href="#">고객센터</b></li>
+                </ul>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li><b href="#">상세 페이지</a></li>
+                <li><b href="#">장바구니</a></li>
+                <li><b href="#">고객 갤러리</a></li>
+                <li><b href="#">주문배송</a></li>
+                <li><b href="#">자주 하는 질문</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div id="cg">
+                <table>
+                    <th>CATEGORY ITEM</th>
+                    <tr><td><a href="#">생활아트</a></td></tr>
+                    <tr><td><a href="#">캔버스 아트</a></td></tr>
+                    <tr><td><a href="#">사진 벽지</a></td></tr>
+                    <tr><td><a href="#">창문형/현관문형</a></td></tr>
+                    <tr><td><a href="#">포인트 벽지</a></td></tr>
+                    <tr><td><a href="#">세계지도</a></td></tr>
+                    <tr><td><a href="#">엔티크 세계지도 벽지</a></td></tr>
+                    <tr><td><a href="#">입체 세계지도 벽지</a></td></tr>
+                    <tr><td><a href="#">어린이방 세계지도</a></td></tr>
+                    <tr><td><a href="#">족자형 롤스크린</a></td></tr>
+                    <tr><td><a href="#">맞춤제작 결제창</a></td></tr>
+                </table>
+            </div>
+            <div id="table_input_form">
+                <form>
+                    <table>
+                        <tr>
+                            <th  colspan="4">회원가입</th>
+                        </tr>
+                         <tr>
+                            <td>아이디</td>
+                            <td><input type="text" name="id" ></td>
+                            <td><input type="button" value="중복검사"></td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <td>비밀번호</td>
+                            <td><input type="text" name="pwd"></td>
+                            <td colspan="2"></td>
+                         </tr>
+                         <tr>
+                             <td>비밀번호확인</td>
+                            <td><input type="password" name="pwd1" ></td>
+                            <td colspan="2"></td>
+                         </tr>
+                         <tr>
+                            <td>이름</td>
+                            <td><input type="text" name="name" ></td>
+                            <td colspan="2"></td>
+                         </tr>
+                         <tr>
+                            <td>성별</td>
+                            <td colspan="3" >
+                                <input id="man" type="radio" name="gender" value="m">
+                                <label for="man">남자</label>
+                                <input id="woman" type="radio" name="gender" value="w">
+                                <label for="woman">여자</label>
+                            </td>
+                        </tr>
+                        <tr>
+                           <td>전화번호</td>
+                          <td>010</td>
+                          <td><input type="text" name="tel"></td>
+                          <td><input type="text" name="tel1"></td>
+                        </tr>
+                        <tr>
+                            <td  colspan="4">*약관에 동의 합니다.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" >
+                                <input type="submit" name="savebnt" value="Save" >
+                                <input type="reset" name="resetbmt"  value="reset">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+        <div id="notice">
+            <table>
+                <th>NOTICE</th>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                <tr><td><li>폭설로인한 배송지연 안내</li></td></tr>
+                                                       
+            </table>
+        </div>
+        <div id="event">
+            <table>
+                <th>THE WEEK'S EVENT</th>
+                <tr><td>이번주의 <a>이벤트 상품</a>을 확인하세요!</td></tr>
+                <tr><td><img src="./img/event.png"></td></tr>                       
+            </table>
+        </div>
+        <footer>
+            <h1>판매자 : 홍길동</h1>
+            <h1>상호 : 다연아트</h1>
+            <h1>주소 : 경기도 수원시</h1>
+            <h1>전화 번호 : 031-2222-3333 </h1>
+        </footer>
+
+    </div>
+    
+</body>
+</html>

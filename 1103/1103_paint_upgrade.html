@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        width: "600";
+        height:"600";
+    }
+    #paint{
+        border: 1px solid;
+    }
+
+</style>
+
+
+
+<body>
+    <div>
+        <canvas id="paint" width="600" height="600"></canvas>
+    </div>
+    <div id="penColor">
+        펜 색상: 
+        검정 <input type="radio" name="color" onclick="color(this.value)" value="black" checked>
+        빨강 <input type="radio" name="color" onclick="color(this.value)" value="red" >
+        초록 <input type="radio" name="color" onclick="color(this.value)" value="green" >
+        노랑 <input type="radio" name="color" onclick="color(this.value)" value="yellow" >
+        선택 <input id="choice" type="color" name="color" onclick="colorchoice()" >
+                
+        <input type="button" name="color" onclick="color(this.value)" value="지우개">
+        <input type="button" name="color" onclick="color(this.value)" value="전체 지우기">
+
+        <br>
+        펜 굵기: <input type="range" name="bold" min="1" max="20" value="1" onclick="bold(this.value)">
+        <br>
+        모양 선택하기:
+        동그라미 <input type="radio" name="shape"onclick=shape(this.value) value="동그라미">
+        네모 <input type="radio" name="shape"onclick=shape(this.value) value="네모">
+        세모<input type="radio" name="shape"  onclick=shape(this.value) value="세모">
+        다각형<input type="radio" name="shape"  onclick=shape(this.value) value="다각형">
+    </div>
+</body>
+
+
+<script>
+    const drawPan=document.getElementById('paint');
+    var point=drawPan.getContext('2d');
+    var flag=false;
+    var psh;
+    
+    var x;
+    var y;
+    var fx;
+    var fy;
+
+
+    color= pc=>{
+        if(pc=='지우개'){
+            point.strokeStyle='white';
+        }else if(pc=='전체 지우기'){
+            point.clearRect(0,0,drawPan.width,drawPan.height);
+        }
+        point.strokeStyle=pc;
+        point.beginPath();
+    }
+
+
+    colorchoice=ch=>{
+        point.strokeStyle=document.getElementById('choice').value;
+        point.beginPath();
+    }
+
+
+    bold= pb=>{
+        point.lineWidth=pb;
+        point.beginPath();
+    }
+
+
+    shape= ps=>{
+        psh=ps;
+    }
+
+
+    drawPan.addEventListener('mousedown',a=>{
+        flag=true;
+        a=window.event;
+        console.log((a.clientX-8)+"/"+(a.clientY-8));
+        
+
+        x=(a.clientX-8);
+        y=(a.clientY-8);
+        point.moveTo(a.clientX,a.clientY);
+        // if(psh=='네모'){
+        //     point.strokeRect((a.clientX-8),(a.clientY-8),10+point.lineWidth,10+point.lineWidth)
+        //     point.beginPath();
+        // }else if(psh=='동그라미'){
+        //     console.log('ssss');
+        //     point.arc((a.clientX-8),(a.clientY-8),5+point.lineWidth,0,2*Math.PI);
+        //     point.stroke();
+        //     point.fill();
+        //     point.beginPath();
+        // }else if(psh=='세모'){
+        //     point.moveTo((a.clientX-8),(a.clientY-8));
+        //     point.lineTo((a.clientX-8),(a.clientY-8)+10+ point.lineWidth);
+        //     point.lineTo((a.clientX-8)+10+ point.lineWidth,(a.clientY-8)+10+ point.lineWidth);
+        //     point.fill();
+        // }else if(psh=='다각형'){
+            
+        // }
+        
+    })
+
+
+
+
+    drawPan.addEventListener('mouseup',a=>{
+        flag=false;
+        if(psh=='네모'){
+            fx=(a.clientX-8)-x;
+            fy=(a.clientY-8)-y;
+            point.strokeRect(x,y,fx,fy);
+        }else if(psh=='세모'){
+            fx=Math.abs(x-(a.clientX-8));
+            fy=Math.abs(y-(a.clientY-8));
+
+            point.moveTo(x,y);
+            point.lineTo((a.clientX-8),(a.clientY-8));
+            point.lineTo(fx,fy);
+            
+
+        }
+
+
+    })
+
+    drawPan.addEventListener('mousemove',a=>{
+        if(flag){
+            // point.lineTo((a.clientX-8),(a.clientY-8));
+            // point.stroke();
+
+        }
+    })
+
+
+
+</script>
+</html>

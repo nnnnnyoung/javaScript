@@ -1,0 +1,26 @@
+#table_input_form{
+    width: 584px;
+    height: 430px;
+    text-align: center;
+    background-color:white;
+    float: left;
+}
+#table_input_form table{
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+#table_input_form table td{
+    border-bottom: 1px solid rgb(235, 206, 206);
+    width: 146px;
+    height: 46px;
+}
+#table_input_form table th{
+    border-bottom: 1px solid rgb(235, 206, 206);;
+    height: 32px;
+    font-size: 15px;
+}
+input{
+    width: 80px;
+}

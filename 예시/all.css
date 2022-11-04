@@ -1,0 +1,178 @@
+body {
+    background-color: white;
+    margin: 0px;
+}
+#main{
+    width: 1024px;
+    height: 700px;
+    background-color: white;
+    margin: 0px auto;
+    
+}
+header{
+    width: 1024px;
+    height: 100px;
+   /*  display: block; block은 가로세로 크기 지정 가능*/
+   float: left;
+    background-color: brown;
+}
+header #im{
+    width: 574px;
+    height: 100px;
+    background-color: rgb(106, 226, 95);
+    float: left;
+
+}
+header #my{
+    width: 450px;
+    height: 100px;
+    font-size: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 60px;
+    background-color: white;
+    float: left;
+}
+#my ul li {
+    display: inline;
+    margin-left: 15px;
+}
+#my ul li a{
+    text-decoration: none;
+    color: rgba(123, 190, 21, 0.705);
+}
+#my ul li b{
+    text-decoration: none;
+    color: gray;
+}
+nav{
+    width: 1024px;
+    height: 50px;
+    background-color: rgb(40, 41, 40);
+    text-align: center;
+    float: left;
+    border-bottom: 20px solid white;
+}
+nav ul li{
+    display: inline;
+    margin-left: 40px;
+    margin-right: 50px;
+}
+
+nav ul li b{
+    text-decoration: none;
+    color: white;
+}
+
+nav ul li a:hover{
+    background-color: gray;
+}
+section{
+    width: 772px;
+    height: 430px;
+    background-color: white;
+    float: left;
+    margin-left: 20px;
+    
+}
+#notice{
+    width: 200px;
+    height: 210px;
+    background-color: chartreuse;
+    float: left;
+    font-size: 11px;
+    margin-bottom: 10px;
+    
+}
+#event{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    float: left;
+    margin-top: 10px;
+}
+footer{
+    width: 1024px;
+    height: 120px;
+    background-color: white;
+    float: left;
+    text-align: left;
+    margin-left: 100px;
+    font-size: 5px;
+    
+}
+#cg table{
+    text-decoration: none;
+    width: 100%;
+    height: 430px;
+    text-align: left;
+    background-color: white;
+}
+
+#cg table a{
+    text-decoration: none;
+    color: rgb(44, 43, 43);
+    margin-left: 30px;
+}
+#cg table th{
+    color: white;
+    background-color: rgba(123, 190, 21, 0.705);
+    text-align: center;
+    font-size: 13px;
+}
+#cg table td{
+    border-bottom: 1px solid white;
+    font-size: 11px;
+    border-bottom: 1px solid lightgray;
+}
+#notice table{
+    width: 200px;
+    height: 210px;
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+#notice table th{
+   color: rgba(123, 190, 21, 0.705);
+   text-align: left;
+   border-bottom: 1px solid lightgray;
+}
+#event table{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+#event table th{
+   color: rgba(123, 190, 21, 0.705);
+   text-align: left;
+   border-bottom: 1px solid lightgray;
+   font-size: 13px;
+}
+#event table td{
+    color: black;
+    text-align: left;
+    font-size: 11px;
+    text-align: center;
+}
+
+#event table td a{
+    color: rgba(123, 190, 21, 0.705);
+    text-align: left;
+    font-size: 11px;
+}
+
+
+section #cg{
+    width: 188px;
+    height: 430px;
+    background-color: white;
+    float: left;
+}
+section #s2{
+    width: 584px;
+    height: 430px;
+    background-color: white;
+    float: left;
+}

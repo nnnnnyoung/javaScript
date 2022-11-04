@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaNews</title>
+    <link rel="stylesheet" href="./css/all.css">
+
+    <style>
+        #joinmember{
+            margin-top: 5%;
+            margin-left: 22%;
+            width: 450px;
+            height: 470px;
+            text-align: center;
+            font-size: 25px;
+        }
+        #join_, #reset{
+            margin-top: 6%;
+            width: 90px;
+            height: 30px;
+            margin-right: 4%;
+        }
+        #bt{
+            margin-left: 41%;
+        }
+        #over ,#id,#pw,#cpw,#mnum,#lnum{
+            width: 80%;
+            height: 40%;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="main">
+        <header>
+            <a href="./Main.html" >
+                <img src="./pic/1101_logo.png" width="300px" height="200px">
+            </a>
+
+        </header>
+
+        <div id="mnav">
+            <nav>
+                <ul>
+                    <li><a href="./enter.html">연예</a></li>
+                    <li> <a href="./sport.html">스포츠</a></li>
+                    <li> <a href="./economy.html">경제</a></li>
+                    <li> <a href="./social.html">사회</a></li>
+                    <li> <a href="./IT.html">IT</a></li>
+                    <li> 
+                        <form action="search" method="get">
+                            글제목: <input type="text" id="titlesh" name="title" style="background-color: dimgray"> 
+                            <input type="submit" id="sh" value="검색">
+
+                        </form>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+
+        <section>
+            <div id="top">
+                <form action="loginPass" method="get">
+                    <table id="joinmember"  >
+                        <tr >
+                            <th colspan="6">회원가입 </th>
+                        </tr>
+                        <tr >
+                            <td colspan="1"width="100" >이름</td>
+                            <td colspan="5 "> <input type="text" id="name" name="mname"> </td>
+                        </tr>
+                        <tr >
+                            <td colspan="1" width="100"> 아이디</td>
+                            <td colspan="4" > <input type="text" name="iid" id="id"> </td>
+                            <td colspan="1"> <input type="button" id="over" value="중복확인"></td>
+                        </tr>
+                        <tr >
+                            <td colspan="1"width="100" >비밀번호</td>
+                            <td colspan="5 "> <input type="text" id="pw" name="ppw"> </td>
+                        </tr>
+                        <tr >
+                            <td colspan="1" width="100">비밀번호 확인</td>
+                            <td colspan="5" > <input type="password" id="cpw" name="cpw"> </td>
+                        </tr>
+                        <tr >
+                            <td colspan="1"width="100" >성별</td>
+                            <td colspan="5" >
+                                <input type="radio" name="gender" value="남자">
+                                <label for="man">남자</label>
+                                
+                                <input type="radio" name="gender" value="여자">
+                                <label for="man">여자</label>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td colspan="1"width="100" >전화번호</td>
+                            <td colspan="1" > 010 </td>
+                            <td colspan="2" > 
+                                <input type="text" id="mnum" name="2tel">
+                            </td>
+                            <td colspan="2" > 
+                                <input type="text" id="lnum" name="3tel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"> 관심분야</td>
+                            <td colspan="5">  
+                                <input type="checkbox" name="interest" value="연"> 연예
+                                <input type="checkbox" name="interest" value="스"> 스포츠
+                                <input type="checkbox" name="interest" value="경"> 경제
+                                <input type="checkbox" name="interest" value="사"> 사회
+                                <input type="checkbox" name="interest" value="I"> IT
+                                </select>
+                            </td>
+                        </tr>
+                           
+        </tr>
+
+                    </table>
+                    <div id="bt">
+                    <input type="submit" id="join_" value="가입">
+                    <input type="reset" id="reset" value="초기화">
+                </div>
+                </form>
+            </div>
+
+            
+
+
+            <div id="ad">
+                <a href="#">
+                    <img src="./pic/11 고급-OPEN-세로형-GIF.gif" width="270" height="600">
+                </a>
+            </div>
+        </section>
+
+        <footer>
+ 
+            <a href="./Main.html"><h3>한국일보 <br></h3></a>
+            주소: 경기 수원시 팔달구 중부대로 100 3층<br>
+            TEL: 031-239-5855               
+        
+
+        </footer>
+
+
+    </div>
+
+
+
+</body>
+</html>
