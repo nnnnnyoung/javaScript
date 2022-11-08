@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM </h1>
+    <h1 id="h1main">자바스크립트에서 제어하기</h1>
+    <hr>
+    검색어 <input type="text" id="sword"> <input type="button" id="idbtn" value="검색">
+    <ul class="first">
+        <li> 첫번째 </li>
+        <li> 두번째 </li>
+        <li> 세번째 </li>
+    </ul>
+    <div>
+        <H1> 스케쥴 </H1>
+        <ul>
+            <li> 첫번째 </li>
+            <li> 두번째 </li>
+            <li> 세번째 </li>
+        </ul>
+    </div>
+</body>
+<script>
+
+    //아래코드 요소선택하기 이벤추가
+    document.getElementById('h1main').onclick=()=>{
+        alert('aaa');
+    }
+
+    document.getElementById('idbtn').onclick=()=>{
+        var a=document.getElementById('sword').value;  
+        var h1=document.querySelector('#h1main');
+        h1.innerHTML=a;
+        if(a==""){
+            alert("입력하세요")
+        }else{
+            h1.innerHTML=a;
+        }
+    }
+
+    // document.getElementById // html 문서에 id로 지정된 요소의 객체의 반환 특징은 반환되는 객체는 유니크
+    // document.getElementsByClassName //html 문서에 클래스로 지정된 복수의 요소를 객체로 반환 배열로 저장됨
+    // document.getElementsByTagName //html문서에 태그로 지정된 복수의 요소를 객체로 반환 배열로 저장됨
+    // document.querySelector //css에서 사용하는 선택자로 가져오고 반환되는 객체는 유니크
+    // document.querySelectorAll //css에서 사용하는 선택자로 가져오고 반환되는 객체는 복수의 요소를 반환받는다.
+
+    //요소(객체)를 가져와서 무엇을 할 수 있나?
+    //1. 스타일 변경(디자인)
+    //2. 데이터 값을 가져와서 빈칸인지> 글자의 분석..
+    //3. 문서의 값을 변경
+    //4. 요소를 추가할 수도 있다. 첨부파일의 수를 늘린다.
+    //5. 요소를 삭제할 수도 있다. 첨부파일의 수를 줄인다.
+    //6. ****마우스 이벤트나 키보드 이벤트를 설정할 수도 있다.
+
+    // DOM 요소(태그)와 노드(태그&text)를 탐색
+    /*
+        [요약 설명]
+        1. childNode: 특정태그에 포함된 자식 노드를 반환합니다.
+        2. parentNode: 특정태그에 포함된 부모 노드를 반환합니다.
+        3. nextSibling: 특정태그에 포함된 [이후] 형제 노드를 반환합니다.
+        4. nextElementSibling: 특정태그에 포함된 [이후] 노드를 반환합니다.
+        5. previousSibling: 특정태그에 포함된 [이전] 형제 노드를 반환합니다.
+        6. previousElementSibling: 특정태그에 포함된 [이전] 노드를 반환합니다.
+        */
+
+
+</script>
+</html>

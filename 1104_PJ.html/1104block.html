@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NY벽돌깨기</title>
 </head>
 <style>
     #blockC{
@@ -15,15 +15,26 @@
         background-image: url(./pic/KakaoTalk_20221104_160938085.jpg) ;
         background-size: contain;
     }
+    #level{        
+        margin-top: 10px;
+        margin-left: 450px;
+    }
 </style>
 
 <body>
+    
     <canvas id="blockC" width="480" height="320"></canvas>
+    <div id="level">
+        난이도:         
+        상 <input type="radio" name="level" onclick="selectL(this.value)" value="상">
+        중 <input type="radio" name="level" onclick="selectL(this.value)" value="중">
+        하 <input type="radio" name="level" onclick="selectL(this.value)" value="하" checked>
+    </div>
 </body>
 
 <script>
     var block=document.getElementById('blockC');
-
+    
     var ctx=block.getContext('2d');
     var ballRadius=10; // 공이 벽에 닿았는지를 확인하기 위해 변수 선언후 원의 반지름 값을 넣어줌
 
@@ -45,7 +56,7 @@
     var brickHeight =20; //벽돌 높이
     var brickPadding =10; //벽돌사이 간격
     var brickOffsetTop =30; //벽돌과 위 벽 간격
-    
+
     var brickOffsetLeft =30; //벽돌과 왼쪽 벽 간격
     // 벽돌정의 :벽돌의 행 수, 열 수, 너비, 높이, 벽돌사이 패딩 정의(서로 닿지 않게), 
     // 위쪽*왼쪽 오프셋정의(캔버스 가장자리에 바로 그려지지 않게) 
@@ -64,6 +75,15 @@
     document.addEventListener('keyup',keyUpHandler,false); //키를 누르지 않았을 때 이벤트 
     document.addEventListener('mousemove',mouseMoveHandler, false); //마우스를 움직였을때 이벤트
 
+    function selectL(L){
+        if(L=='상'){
+            var  interval =  setInterval(draw, 8)
+        }else if(L=='중'){
+            var  interval =  setInterval(draw, 10)
+        }else if(L=='하'){
+            var  interval =  setInterval(draw, 15)
+        }
+    }
     function mouseMoveHandler(e){
         var relativeX=e.clientX-block.offsetLeft;
         if(relativeX>0 && relativeX<block.width){ //마우스의 x좌표값이 캔버스의 너비 안에 있을때
@@ -217,8 +237,8 @@
         x += dx; //x,y의 값이 함수가 실행될때마다 바뀜
         y += dy;
     }
-    var  interval =  setInterval(draw, 10);//10밀리초마다 draw함수가 실행 됨
-
+    
+    var  interval =  setInterval(draw, 15);//10밀리초마다 draw함수가 실행 됨
 
 </script>
 </html>

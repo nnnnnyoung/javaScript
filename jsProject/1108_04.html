@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="id" name="uid"> <input type="button" id="duplextChkid" value="버튼">
+    <br>
+    검색어 <span id="idinfo"></span>
+    
+    <!-- 입력하는 내용(문장 포함)이  badword단어가 포함되어 있으면 금지어가 포함되었다고 표시, 
+        사용 가능하면 입력된 글이 나오게 한다.
+    파일명 : t02.html -->
+    
+</body>
+<script>
+    var badword =['apple','banana'];
+
+    document.getElementById('id').onchange=()=>{
+        let a=document.getElementById('id').value;
+        let b=false;
+        for(let i=0; i<badword.length; i++){
+            if(a.includes( badword[i])){
+                b=true;
+            }
+        }
+
+        if(b){
+            alert('금지어 포함')
+        }else{
+            document.getElementById('idinfo').innerText=a;
+        }
+    }
+
+
+
+</script>
+</html>

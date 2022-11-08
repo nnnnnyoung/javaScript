@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="id" name="uid"> <input type="button" id="duplextChkid" value="버튼">
+    <br>
+    검색어 <span id="idinfo"></span>
+
+    <!-- 입력하는 단어 위에서 지정한  span 태그에 출력하기..  입력될때 마다 갱신되어 출력된다. -->
+</body>
+<script>
+
+    document.getElementById('id').onchange=()=>{
+        let a=document.getElementById('id').value
+        document.getElementById('idinfo').innerText=a
+    }
+
+
+
+</script>
+</html>
