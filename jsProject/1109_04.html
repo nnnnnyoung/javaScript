@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{
+        width: 900px;
+        border-collapse:collapse;
+    }
+    td{
+        padding-left: 5px;
+    }
+</style>
+<body>
+    <table border="1" id="basket">
+        <thead>
+            <th>번호</th>
+            <th>상품정보</th>            
+            <th>옵션</th>            
+            <th>상품금액</th>
+            <th>배송비</th>
+            <th>삭제</th>
+        </thead>
+        <tbody id="bList"></tbody>
+    </table>    
+    <br><br><br><br><br><br>
+    <table border="1">
+        <thead>
+            <td >상품정보</td>
+            <td>옵션</td>
+            <td>상품금액</td>
+            <td>배송비</td>
+        </thead>
+        <tr>
+            <td ><input type="text" id="info" width="80px"></td>
+            <td > 빨강 <input type="radio" name="color" value="red">
+                검정 <input type="radio" name="color" value="black"></td>
+            <td ><input type="text" id="price" width="80px"></td>
+            <td><input type="text"  id="delprice" width="80px"></td>
+            <td><input type="button" value="장바구니 담기" onclick="input()"></td>
+        </tr>
+        
+    </table>
+        
+    <script>
+
+
+        function input(){
+            var myblist=document.getElementById('bList');
+            // var row=myblist.insertRow(myblist.rows.length);
+            var row=myblist.insertRow();
+
+            var cell1=row.insertCell(0); 
+            var cell2=row.insertCell(1); 
+            var cell3=row.insertCell(2); 
+            var cell4=row.insertCell(3); 
+            var cell5=row.insertCell(4); 
+            var cell6=row.insertCell(5); 
+
+            cell1.innerHTML= myblist.rows.length ; 
+            cell2.innerHTML=document.getElementById('info').value
+            var radio=document.getElementsByName('color');
+            for(let i=0; i<radio.length; i++) {
+                if(radio[i].checked){
+                    cell3.innerHTML=radio[i].value;
+                }
+            }
+            cell4.innerHTML=document.getElementById('price').value
+            cell5.innerHTML=document.getElementById('delprice').value
+            cell6.innerHTML=
+            '<form> <input type="button" value="삭제" name="'+document.getElementById('info').value+'" onclick="del(this.name)"></form>'
+           
+
+        }
+
+        del=name=>{
+            console.log(name);   
+            console.log(typeof name)         
+            var myblist=document.getElementById('bList');
+            
+            console.log(myblist.rows[0].cells[1].innerText);
+            var a=myblist.rows[0].cells[1].innerText;
+
+            console.log(typeof a);
+
+            for(let i=0; i<myblist.rows.length; i++){
+                if(myblist.rows[i].cells[1].innerText==name){
+                    myblist.deleteRow(i);
+                }
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
